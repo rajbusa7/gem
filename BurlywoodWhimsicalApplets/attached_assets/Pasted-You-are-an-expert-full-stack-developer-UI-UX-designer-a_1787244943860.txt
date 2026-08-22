@@ -1,0 +1,760 @@
+You are an expert full-stack developer, UI/UX designer, and product architect.
+
+I have uploaded my Smart India Hackathon 2026 project PPT. FIRST carefully study and understand the entire PPT before writing any code.
+
+PROJECT NAME:
+GeM PriceCompare
+
+PROBLEM STATEMENT:
+CHA-112 — Price Comparison of GeM Products with Other E-Marketplaces
+
+ORGANIZATION:
+Government e-Marketplace (GeM)
+
+THEME:
+Smart Automation
+
+CATEGORY:
+Software
+
+TEAM:
+CODENOX — CHARUSAT University
+
+==================================================
+
+1. UNDERSTAND THE PROJECT
+   ==================================================
+
+The purpose of this project is to create a web platform that helps buyers determine whether a product listed on Government e-Marketplace (GeM) is competitively priced.
+
+The platform should compare a GeM product with equivalent products from other marketplaces such as Amazon Business, Flipkart and IndiaMART.
+
+The system should:
+
+1. Allow a user to search for a product.
+2. Find the relevant GeM product.
+3. Find equivalent products from other marketplaces.
+4. Match products intelligently even when product names are slightly different.
+5. Compare prices side-by-side.
+6. Calculate the market average.
+7. Identify whether the GeM price is above, below, or close to the market price.
+8. Calculate potential savings.
+9. Show price history.
+10. Provide a buyer dashboard.
+11. Highlight products that may require price review.
+12. Provide a Refresh Prices feature.
+
+The PPT proposes:
+
+* Python
+* BeautifulSoup / Selenium
+* RapidFuzz
+* FastAPI
+* SQLite / MongoDB
+* React or Streamlit
+
+For this prototype, prefer:
+
+Frontend:
+React + Vite
+
+Styling:
+Tailwind CSS
+
+Backend:
+Python + FastAPI
+
+Database:
+SQLite
+
+Product matching:
+RapidFuzz
+
+Charts:
+Recharts
+
+Initially use a PRE-CACHED DEMO DATASET instead of depending completely on live scraping.
+
+==================================================
+2. IMPORTANT PROTOTYPE REQUIREMENT
+==================================
+
+This is a Smart India Hackathon DEMO PROTOTYPE.
+
+Do NOT build an unnecessarily complicated production system.
+
+The prototype must be:
+
+* Fast
+* Professional
+* Visually impressive
+* Easy to demonstrate
+* Reliable even if external marketplace websites are unavailable
+* Responsive
+* Easy to understand for judges
+
+The primary demo journey must be:
+
+SEARCH
+→ SELECT PRODUCT
+→ SMART MATCH
+→ PRICE COMPARISON
+→ SAVINGS ANALYSIS
+→ PRICE HISTORY
+→ BUYER DASHBOARD
+
+Make this journey extremely smooth.
+
+==================================================
+3. WEBSITE DESIGN
+=================
+
+Create a modern, premium government-tech/procurement dashboard.
+
+Design inspiration:
+
+* Government technology platform
+* Enterprise SaaS dashboard
+* Modern data analytics platform
+* Clean Indian public-sector technology aesthetic
+
+Do NOT make it look like a generic e-commerce website.
+
+Use:
+
+* Clean typography
+* Professional cards
+* Subtle shadows
+* Rounded corners
+* Data visualization
+* Clear tables
+* Status badges
+* Responsive layout
+* Professional navigation
+* Good spacing
+* Strong visual hierarchy
+
+The website should feel like a serious procurement intelligence platform.
+
+==================================================
+4. MAIN NAVIGATION
+==================
+
+Create a sidebar or top navigation containing:
+
+Dashboard
+Search & Compare
+Price History
+Products
+Analytics
+About
+
+Also include:
+
+Refresh Prices
+
+and a small user/profile area.
+
+==================================================
+5. HOMEPAGE / LANDING PAGE
+==========================
+
+Create a professional hero section.
+
+Headline:
+
+"Compare Before You Procure"
+
+Subheading:
+
+"Verify GeM prices against the open market with intelligent product matching and transparent price comparison."
+
+Main search bar:
+
+"Search for a product, brand, model or SKU..."
+
+Button:
+
+"Compare Prices"
+
+Below the search bar show popular searches:
+
+HP LaserJet Pro
+Dell Monitor
+Office Chair
+Wireless Mouse
+Laptop
+
+Also show important statistics:
+
+Products Analyzed
+Marketplace Sources
+Potential Savings
+Products Above Market Price
+
+==================================================
+6. SEARCH & COMPARE PAGE
+========================
+
+Create a powerful product search interface.
+
+Example search:
+
+"HP LaserJet Pro"
+
+Display matching products.
+
+Example:
+
+HP LaserJet Pro M404dn
+HP LaserJet Pro M428fdw
+HP LaserJet Enterprise M507dn
+
+Each result should show:
+
+Product name
+Brand
+Model
+Category
+GeM price
+Match confidence
+
+Example badge:
+
+"94% Match"
+
+Allow the user to click a product and open the detailed comparison page.
+
+==================================================
+7. PRODUCT COMPARISON PAGE
+==========================
+
+This is the MOST IMPORTANT page of the entire prototype.
+
+Create a professional product header:
+
+HP LaserJet Pro M404dn
+
+Brand: HP
+Model: M404dn
+Category: Printer
+
+Then create a large comparison table.
+
+Columns:
+
+Marketplace
+Product
+Price
+Difference
+Match Confidence
+Status
+
+Example data:
+
+GeM
+₹18,500
+
+Amazon Business
+₹16,999
+
+Flipkart
+₹17,499
+
+IndiaMART
+₹17,200
+
+Show the GeM price prominently.
+
+Calculate:
+
+Market Average
+
+Difference between GeM and market average
+
+Percentage difference
+
+Potential savings
+
+Example:
+
+Market Average:
+₹17,233
+
+GeM Price:
+₹18,500
+
+Potential Saving:
+₹1,267
+
+Status:
+
+"Above Market Average"
+
+Use appropriate visual indicators.
+
+==================================================
+8. SMART PRODUCT MATCHING
+=========================
+
+Implement a prototype matching system using RapidFuzz.
+
+The matching system should compare:
+
+Brand
+Model number
+Product name
+Category
+Specifications
+
+Example:
+
+GeM:
+"HP LaserJet Pro M404dn Duplex Network Printer"
+
+Amazon:
+"HP M404dn LaserJet Pro Network Printer"
+
+The system should identify these as equivalent products.
+
+Show:
+
+"Smart Match"
+
+"94% Match Confidence"
+
+Do not falsely claim that this is an advanced AI model.
+
+For the prototype, use fuzzy string matching / RapidFuzz as described in the project architecture.
+
+==================================================
+9. PRICE ANALYSIS
+=================
+
+Automatically calculate:
+
+Market Average
+Lowest Market Price
+Highest Market Price
+GeM Difference
+Percentage Difference
+Potential Savings
+
+Example:
+
+GeM Price = ₹18,500
+
+Market Average = ₹17,233
+
+Difference = ₹1,267
+
+Percentage Difference = approximately 7.35%
+
+Display a clear recommendation:
+
+"⚠️ GeM price is above the current market average."
+
+If GeM is cheaper:
+
+"✓ GeM price is below the current market average."
+
+If prices are close:
+
+"✓ GeM price is competitive with the market."
+
+==================================================
+10. PRICE CHART
+===============
+
+Create a professional bar chart comparing:
+
+GeM
+Amazon Business
+Flipkart
+IndiaMART
+
+Use Recharts.
+
+The chart should make price differences immediately understandable.
+
+==================================================
+11. PRICE HISTORY PAGE
+======================
+
+Create a price-history page.
+
+Show:
+
+Product name
+Current GeM price
+Market average
+30-day change
+90-day change
+
+Create a line chart showing historical prices.
+
+Example:
+
+May
+June
+July
+August
+
+Allow marketplace filtering.
+
+Use cached demo historical data.
+
+==================================================
+12. BUYER DASHBOARD
+===================
+
+Create an analytics dashboard for government buyers.
+
+Show cards:
+
+Total Products Analyzed
+Products Above Market Average
+Products Below Market Average
+Potential Savings
+
+Example:
+
+Products Analyzed:
+1,248
+
+Above Market Average:
+183
+
+Below Market Average:
+412
+
+Potential Savings:
+₹4.82 Cr
+
+Also show:
+
+"Products Requiring Review"
+
+Example:
+
+HP LaserJet Pro        +8.2%
+Dell Monitor           +6.4%
+Office Chair           +5.9%
+
+Create charts for:
+
+Price distribution
+Savings
+Marketplace comparison
+Products above market average
+
+==================================================
+13. REFRESH PRICES
+==================
+
+Add a "Refresh Prices" button.
+
+For the prototype, it can refresh the cached dataset and show a realistic loading state.
+
+Example:
+
+Refreshing marketplace data...
+
+Progress/loading animation
+
+Then:
+
+"✓ Prices updated successfully"
+
+Display:
+
+Last Updated:
+20 August 2026, 10:12 PM
+
+The architecture should allow real scrapers/APIs to be connected later.
+
+==================================================
+14. DEMO DATA
+=============
+
+Create a realistic cached dataset containing at least 25 products.
+
+Include categories such as:
+
+Printers
+Laptops
+Monitors
+Office Chairs
+Keyboards
+Mice
+Projectors
+Networking Equipment
+Storage Devices
+Cameras
+Office Equipment
+
+Each product should contain:
+
+id
+name
+brand
+model
+category
+GeM price
+Amazon Business price
+Flipkart price
+IndiaMART price
+match confidence
+historical prices
+
+Use realistic-looking Indian Rupee prices.
+
+Clearly treat these as DEMO/CACHED DATA in the prototype.
+
+==================================================
+15. BACKEND API
+===============
+
+Create a FastAPI backend.
+
+Suggested endpoints:
+
+GET /products
+
+GET /products/{id}
+
+GET /search?q=
+
+GET /compare/{id}
+
+GET /history/{id}
+
+GET /dashboard
+
+POST /refresh
+
+Return clean JSON responses.
+
+Keep the API structure clean so real marketplace data can later replace the demo dataset.
+
+==================================================
+16. DATABASE
+============
+
+Use SQLite for the prototype.
+
+Create tables for:
+
+products
+marketplace_prices
+price_history
+
+If using JSON initially makes development easier, structure the code so SQLite can easily be introduced.
+
+==================================================
+17. PROJECT ARCHITECTURE
+========================
+
+Use this architecture:
+
+Marketplace Data
+↓
+Data Collection Layer
+↓
+Normalization
+↓
+RapidFuzz Product Matching
+↓
+SQLite Database
+↓
+FastAPI
+↓
+React Frontend
+↓
+Buyer Dashboard
+
+Keep frontend and backend separated.
+
+==================================================
+18. ERROR HANDLING
+==================
+
+The website must NOT break if:
+
+* Product is not found
+* Search is empty
+* API is temporarily unavailable
+* Marketplace price is missing
+* Historical data is unavailable
+
+Show clean messages such as:
+
+"No matching product found."
+
+"Marketplace price unavailable."
+
+"Using cached price data."
+
+==================================================
+19. RESPONSIVE DESIGN
+=====================
+
+The website must work properly on:
+
+Desktop
+Laptop
+Tablet
+Mobile
+
+The primary target is desktop because this is an SIH presentation/demo.
+
+==================================================
+20. DEMO MODE
+=============
+
+Add a DEMO MODE so the entire presentation can work without external marketplace websites.
+
+Use cached data.
+
+Create a few predefined demo products.
+
+The main demonstration should work like this:
+
+1. Open Dashboard
+2. Click Search & Compare
+3. Search "HP LaserJet"
+4. Select "HP LaserJet Pro M404dn"
+5. Show Smart Match
+6. Show GeM vs marketplace prices
+7. Show market average
+8. Show potential savings
+9. Show price chart
+10. Open Price History
+11. Open Buyer Dashboard
+12. Click Refresh Prices
+
+Everything should work smoothly without requiring live scraping.
+
+==================================================
+21. UI DETAILS
+==============
+
+Add small professional touches:
+
+* Loading skeletons
+* Tooltips
+* Hover effects
+* Search suggestions
+* Status badges
+* Match confidence indicators
+* Currency formatting in ₹
+* Sortable comparison table
+* Filter by marketplace
+* Filter by category
+* Last updated timestamp
+* Export comparison button
+* Print-friendly comparison view
+
+==================================================
+22. IMPORTANT TRUST & TRANSPARENCY
+==================================
+
+Because this is a procurement price-comparison platform, clearly show:
+
+Data Source
+Last Updated
+Match Confidence
+Cached/Live status
+
+Do NOT pretend demo data is live marketplace data.
+
+For prototype data, label it:
+
+"Demo / Cached Data"
+
+==================================================
+23. CODE QUALITY
+================
+
+Write clean, modular, maintainable code.
+
+Use reusable React components.
+
+Suggested components:
+
+Navbar
+Sidebar
+SearchBar
+ProductCard
+ComparisonTable
+PriceChart
+PriceHistoryChart
+StatCard
+MatchBadge
+SavingsCard
+Dashboard
+LoadingState
+ErrorState
+
+Use environment variables for API URLs.
+
+Add comments only where useful.
+
+==================================================
+24. FINAL OUTPUT REQUIRED
+=========================
+
+Build the COMPLETE working prototype.
+
+Provide:
+
+1. Complete frontend code
+2. Complete backend code
+3. Database/demo dataset
+4. API endpoints
+5. Matching logic
+6. Instructions to install dependencies
+7. Instructions to run frontend
+8. Instructions to run backend
+9. Demo credentials only if authentication is implemented
+10. Explanation of project architecture
+
+Most importantly:
+
+DO NOT ONLY CREATE A STATIC UI.
+
+The search, comparison, matching, calculations, dashboard and price history should actually work using the demo dataset.
+
+==================================================
+25. SIH PRESENTATION PRIORITY
+=============================
+
+Optimize the application for a Smart India Hackathon judge demonstration.
+
+The judge should understand the value within 30 seconds.
+
+The most important screen is:
+
+SEARCH → PRODUCT → PRICE COMPARISON → SAVINGS → RECOMMENDATION
+
+Make that flow extremely polished.
+
+Do not add unnecessary features that distract from the core problem.
+
+FIRST understand the uploaded PPT.
+THEN design the architecture.
+THEN create the project.
+THEN provide the complete working code.
+
+Do not change the core problem statement or project concept from the PPT.
+
+Project:
+GeM PriceCompare
+Problem Statement:
+CHA-112
+"Price Comparison of GeM Products with Other E-Marketplaces"
+Organization:
+Government e-Marketplace (GeM)
+SIH 2026
+Team:
+CODENOX — CHARUSAT University

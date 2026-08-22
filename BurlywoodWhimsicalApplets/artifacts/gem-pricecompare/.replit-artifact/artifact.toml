@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "GeM PriceCompare"
+description = "A Smart India Hackathon prototype that helps government buyers compare GeM product prices with cached marketplace data, understand market position, and identify potential savings."
+version = "1.0.0"
+id = "artifacts/gem-pricecompare"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19500
+
+[services.development]
+run = "pnpm --filter @workspace/gem-pricecompare run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gem-pricecompare", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/gem-pricecompare/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19500"
+BASE_PATH = "/"
