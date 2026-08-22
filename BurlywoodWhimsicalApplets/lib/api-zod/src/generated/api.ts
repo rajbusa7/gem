@@ -32,6 +32,7 @@ export const ListProductsResponseItem = zod.object({
   "model": zod.string(),
   "category": zod.string(),
   "gemPrice": zod.number(),
+  "imageUrl": zod.string().optional(),
   "prices": zod.record(zod.string(), zod.number()),
   "confidence": zod.number(),
   "history": zod.array(zod.object({
@@ -59,6 +60,7 @@ export const GetProductResponse = zod.object({
   "model": zod.string(),
   "category": zod.string(),
   "gemPrice": zod.number(),
+  "imageUrl": zod.string().optional(),
   "prices": zod.record(zod.string(), zod.number()),
   "confidence": zod.number(),
   "history": zod.array(zod.object({
@@ -86,6 +88,7 @@ export const CompareProductResponse = zod.object({
   "model": zod.string(),
   "category": zod.string(),
   "gemPrice": zod.number(),
+  "imageUrl": zod.string().optional(),
   "prices": zod.record(zod.string(), zod.number()),
   "confidence": zod.number(),
   "history": zod.array(zod.object({
@@ -129,6 +132,7 @@ export const GetPriceHistoryResponse = zod.object({
   "model": zod.string(),
   "category": zod.string(),
   "gemPrice": zod.number(),
+  "imageUrl": zod.string().optional(),
   "prices": zod.record(zod.string(), zod.number()),
   "confidence": zod.number(),
   "history": zod.array(zod.object({

@@ -166,6 +166,7 @@ components:
         model: { type: string }
         category: { type: string }
         gemPrice: { type: number }
+        imageUrl: { type: string }
         prices:
           type: object
           additionalProperties: { type: number }

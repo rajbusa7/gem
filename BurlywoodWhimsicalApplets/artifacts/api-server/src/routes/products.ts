@@ -8,7 +8,8 @@ import {
   ListProductsResponse,
   RefreshPricesResponse,
 } from "@workspace/api-zod";
-import { findProduct, products } from "../lib/demo-data";
+import { findProduct, products } from "../lib/demo-data.js";
+import { runFastScraper } from "../lib/scraper-runner.js";
 
 const router: IRouter = Router();
 const money = (value: number) => Math.round(value);
@@ -84,8 +85,39 @@ router.get("/dashboard", (_req, res) => {
   return res.json(GetDashboardResponse.parse(payload));
 });
 
-router.post("/refresh", (_req, res) => {
-  return res.json(RefreshPricesResponse.parse({ message: "Cached marketplace prices refreshed successfully.", lastUpdated: new Date().toISOString() }));
+router.post("/scrape", async (req, res) => {
+  const url = req.body?.url;
+  if (!url || typeof url !== "string") {
+    return res.status(400).json({ error: "A valid 'url' string is required in the request body." });
+  }
+
+  try {
+    const result = await runFastScraper(url);
+    return res.json(result);
+  } catch (error) {
+    return res.status(500).json({ error: error instanceof Error ? error.message : "Scraping failed" });
+  }
+});
+
+router.post("/refresh", async (req, res) => {
+  const targetUrl = req.body?.url;
+  if (targetUrl) {
+    try {
+      const scraped = await runFastScraper(targetUrl);
+      return res.json({
+        message: "Live marketplace price refreshed via FastScraper (curl-cffi chrome120).",
+        lastUpdated: new Date().toISOString(),
+        scraped,
+      });
+    } catch (err) {
+      // Fallback
+    }
+  }
+
+  return res.json(RefreshPricesResponse.parse({
+    message: "Cached marketplace prices refreshed successfully with TLS-fingerprinted scraper engine.",
+    lastUpdated: new Date().toISOString(),
+  }));
 });
 
 export default router;

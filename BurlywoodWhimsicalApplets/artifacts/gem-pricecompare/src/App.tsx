@@ -33,17 +33,17 @@ const pct = (value = 0) => `${value >= 0 ? '+' : ''}${value.toFixed(1)}%`;
 const dateLabel = (value?: string) => value ? new Date(value).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '18 Jun 2026';
 
 const demoProducts: Product[] = [
-  { id: 'hp-laserjet-m404dn', name: 'LaserJet Pro M404dn Printer', brand: 'HP', model: 'M404dn', category: 'Office Equipment', gemPrice: 18340, prices: { Amazon: 19699, Flipkart: 18990, IndiaMART: 17600 }, confidence: 94, history: [
+  { id: 'hp-laserjet-m404dn', name: 'LaserJet Pro M404dn Printer', brand: 'HP', model: 'M404dn', category: 'Office Equipment', gemPrice: 18340, imageUrl: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=80', prices: { Amazon: 19699, Flipkart: 18990, IndiaMART: 17600 }, confidence: 94, history: [
     { label: 'Apr 26', gem: 19200, amazon: 20100, flipkart: 19450, indiamart: 18400 }, { label: 'May 26', gem: 18700, amazon: 19800, flipkart: 19200, indiamart: 17900 }, { label: 'Jun 26', gem: 18340, amazon: 19699, flipkart: 18990, indiamart: 17600 },
   ] },
-  { id: 'dell-optiplex-7010', name: 'OptiPlex 7010 Small Form Factor', brand: 'Dell', model: '7010 SFF', category: 'IT Hardware', gemPrice: 54890, prices: { Amazon: 57100, Flipkart: 55999, IndiaMART: 52700 }, confidence: 89, history: [
+  { id: 'dell-optiplex-7010', name: 'OptiPlex 7010 Small Form Factor', brand: 'Dell', model: '7010 SFF', category: 'IT Hardware', gemPrice: 54890, imageUrl: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&w=600&q=80', prices: { Amazon: 57100, Flipkart: 55999, IndiaMART: 52700 }, confidence: 89, history: [
     { label: 'Apr 26', gem: 55700, amazon: 57900, flipkart: 56900, indiamart: 54000 }, { label: 'May 26', gem: 55000, amazon: 57500, flipkart: 56200, indiamart: 53100 }, { label: 'Jun 26', gem: 54890, amazon: 57100, flipkart: 55999, indiamart: 52700 },
   ] },
-  { id: 'epson-projector-982w', name: 'EB-982W Classroom Projector', brand: 'Epson', model: 'EB-982W', category: 'AV & Display', gemPrice: 67450, prices: { Amazon: 62999, Flipkart: 65100, IndiaMART: 63800 }, confidence: 91, history: [
+  { id: 'epson-projector-982w', name: 'EB-982W Classroom Projector', brand: 'Epson', model: 'EB-982W', category: 'AV & Display', gemPrice: 67450, imageUrl: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80', prices: { Amazon: 62999, Flipkart: 65100, IndiaMART: 63800 }, confidence: 91, history: [
     { label: 'Apr 26', gem: 68100, amazon: 64800, flipkart: 66900, indiamart: 64500 }, { label: 'May 26', gem: 67800, amazon: 63700, flipkart: 66000, indiamart: 64200 }, { label: 'Jun 26', gem: 67450, amazon: 62999, flipkart: 65100, indiamart: 63800 },
   ] },
-  { id: 'canon-imageclass-mf', name: 'imageCLASS All-in-One Printer', brand: 'Canon', model: 'MF3010', category: 'Office Equipment', gemPrice: 21990, prices: { Amazon: 23450, Flipkart: 22800, IndiaMART: 21100 }, confidence: 87, history: [] },
-  { id: 'logitech-rally-bar', name: 'Rally Bar Mini Video Conference System', brand: 'Logitech', model: 'Rally Bar Mini', category: 'AV & Display', gemPrice: 89400, prices: { Amazon: 92000, Flipkart: 89990, IndiaMART: 86500 }, confidence: 83, history: [] },
+  { id: 'canon-imageclass-mf', name: 'imageCLASS All-in-One Printer', brand: 'Canon', model: 'MF3010', category: 'Office Equipment', gemPrice: 21990, imageUrl: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=80', prices: { Amazon: 23450, Flipkart: 22800, IndiaMART: 21100 }, confidence: 87, history: [] },
+  { id: 'logitech-rally-bar', name: 'Rally Bar Mini Video Conference System', brand: 'Logitech', model: 'Rally Bar Mini', category: 'AV & Display', gemPrice: 89400, imageUrl: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80', prices: { Amazon: 92000, Flipkart: 89990, IndiaMART: 86500 }, confidence: 83, history: [] },
 ];
 
 const demoDashboard: Dashboard = {
@@ -471,6 +471,20 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
   const delta = (product.gemPrice - avg) / avg * 100;
   return (
     <button className={`product-card ${selected ? 'product-selected' : ''}`} onClick={onSelect} data-testid={`card-product-${product.id}`}>
+      {product.imageUrl && (
+        <div className="product-card-media">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            loading="lazy"
+            className="product-card-image"
+            onError={(e) => {
+              const el = (e.target as HTMLElement).parentElement;
+              if (el) el.style.display = 'none';
+            }}
+          />
+        </div>
+      )}
       <div className="product-card-top">
         <span className="product-category">{product.category}</span>
         <span className={`confidence ${product.confidence >= 90 ? 'confidence-high' : ''}`}>{product.confidence}% match</span>
@@ -590,7 +604,21 @@ function ComparePage() {
       />
       <DemoNotice compact />
       <section className="compare-hero panel fade-up">
-        <div className="match-mark"><ShieldCheck size={24} /></div>
+        {product.imageUrl ? (
+          <div className="compare-hero-thumb">
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="compare-product-image"
+              onError={(e) => {
+                const el = (e.target as HTMLElement).parentElement;
+                if (el) el.style.display = 'none';
+              }}
+            />
+          </div>
+        ) : (
+          <div className="match-mark"><ShieldCheck size={24} /></div>
+        )}
         <div className="compare-product-copy">
           <div className="section-label">SMART MATCH · {product.confidence}% CONFIDENCE</div>
           <h2>{product.name}</h2>
@@ -602,6 +630,7 @@ function ComparePage() {
           <small>Reference snapshot</small>
         </div>
       </section>
+
       {comparisonQuery.isLoading && <div className="soft-alert"><RefreshCw size={15} className="spin" /> Building comparison from cached records…</div>}
       {comparisonQuery.isError && <div className="soft-alert"><Database size={15} /> Comparison API unavailable — demo values shown for this record.</div>}
       <div className="compare-stat-grid">

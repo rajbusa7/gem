@@ -15,6 +15,7 @@ export interface Product {
   model: string;
   category: string;
   gemPrice: number;
+  imageUrl?: string;
   prices: ProductPrices;
   confidence: number;
   history: HistoryPoint[];
